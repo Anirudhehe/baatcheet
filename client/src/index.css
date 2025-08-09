@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+*{
+  font-family: "Rubik", sans-serif;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+@layer utilities {
+  .bg-custom-hero {
+    background-image: url('/src/assets/bgImage.jpg');
+  }
+}
