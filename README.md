@@ -82,7 +82,7 @@ PORT=5000
 
 ```bash
 # Start development server
-npm run dev
+npm run server
 ```
 
 ### 4. Development Workflow
