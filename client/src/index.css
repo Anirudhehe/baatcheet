@@ -10,6 +10,6 @@
 }
 @layer utilities {
   .bg-custom-hero {
-    background-image: url('/src/assets/bgImage.jpg');
+    background-image: url('/bgImage.jpg');
   }
 }
