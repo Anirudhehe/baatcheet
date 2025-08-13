@@ -4,7 +4,7 @@ import { formatMessageTime } from '../lib/utils.js';
 import { ChatContext } from '../../context/ChatContext.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import toast, { Toaster } from 'react-hot-toast';
-import { FaUserCircle, FaQuestionCircle, FaArrowLeft } from 'react-icons/fa';
+import { FaUserCircle, FaQuestionCircle, FaArrowLeft, FaImage } from 'react-icons/fa';
 
 const ChatContainer = () => {
   const { messages,selectedUser,setSelectedUser,sendMessage,getMessages} = useContext(ChatContext);
@@ -100,7 +100,7 @@ useEffect(()=>{
         <input onChange={handleSendImage} 
         type="file" id='image' accept='image/png, image/jpg' hidden/>
         <label htmlFor="image">
-          <img src={assets.gallery_icon} alt="" className='w-5 mr-2 cursor-pointer'/>
+          <FaImage className="w-5 h-5 mr-2 cursor-pointer text-gray-400" />
         </label>
       </div>
       <img src={assets.send_button} alt="" className='w-7 cursor-pointer'/>
