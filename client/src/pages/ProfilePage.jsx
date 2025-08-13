@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import assets from '../assets/assets'
 import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../../context/AuthContext'
+import { FaUserCircle } from 'react-icons/fa'
 const ProfilePage = () => {
 
   const {authUser,updateProfile} = useContext(AuthContext)
@@ -29,7 +30,13 @@ const ProfilePage = () => {
 
   return (
     <div className='min-h-screen bg-cover bg-no-repeat flex items-center justify-center'>
-      <div className='w-5/6 max-w-2xl bg-gray-800 text-white border-2 border-gray-600 flex items-center justify-between max-sm:flex-col-reverse rounded-lg'>
+      <div className='w-5/6 max-w-2xl bg-gray-800 text-white border-2 border-gray-600 flex items-center justify-between max-sm:flex-col-reverse rounded-lg relative'>
+      <button
+        onClick={() => navigate('/')}
+        className='absolute top-8 right-5 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-gray-500'
+      >
+        Chats
+      </button>
         <form onSubmit={handleSubmit} action="" className='flex flex-col gap-5 p-10 flex-1'>
           <h3 className='text-lg'>
             Profile Details
@@ -38,7 +45,7 @@ const ProfilePage = () => {
             <input onChange={(e)=>
               setSelectedImg(e.target.files[0])
             } type="file" id='avatar' accept=' .png, .jpg, .jpeg'hidden/> 
-            <img src={selectedImg ? URL.createObjectURL(selectedImg):assets.avatar_icon} alt=""  className={`w-12 h-12 aspect-[1/1] ${selectedImg ? 'rounded-full ':''}`}/>
+            {selectedImg ? <img src={URL.createObjectURL(selectedImg)} alt=""  className={`w-12 h-12 aspect-[1/1] ${selectedImg ? 'rounded-full ':''}`}/> : <FaUserCircle className="w-12 h-12 text-gray-400" />}
             Upload Profile Picture
           </label>
           <input onChange={(e)=>setName(e.target.value)} value={name}

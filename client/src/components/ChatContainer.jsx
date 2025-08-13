@@ -4,6 +4,7 @@ import { formatMessageTime } from '../lib/utils.js';
 import { ChatContext } from '../../context/ChatContext.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import toast, { Toaster } from 'react-hot-toast';
+import { FaUserCircle, FaQuestionCircle, FaArrowLeft } from 'react-icons/fa';
 
 const ChatContainer = () => {
   const { messages,selectedUser,setSelectedUser,sendMessage,getMessages} = useContext(ChatContext);
@@ -54,12 +55,12 @@ useEffect(()=>{
 
       {/* header */}
       <div className='flex items-center gap-3 py-3 mx-4 border-b border-stone-500'>
-        <img src={selectedUser.profilePic || assets.avatar_icon} alt="" className='w-8 rounded-full' />
+        {selectedUser.profilePic ? <img src={selectedUser.profilePic} alt="" className='w-8 rounded-full' /> : <FaUserCircle className="w-8 h-8 text-gray-400" />}
         <p className='flex-1 text-lg text-white flex items-center gap-2'>{selectedUser.fullName} {onlineUsers.includes(selectedUser._id) &&  <span className='w-2 h-2 rounded-full bg-green-500'></span>}
        
         </p>
-        <img onClick={()=>setSelectedUser(null)} src={assets.arrow_icon} alt="" className='cursor-pointer md:hidden max-w-7'/>
-        <img src={assets.help_icon} alt="" className='cursor-pointer max-md:hidden max-w-5'/>
+        <FaArrowLeft onClick={()=>setSelectedUser(null)} className="cursor-pointer md:hidden w-7 h-7 text-gray-400" />
+        <FaQuestionCircle className="cursor-pointer max-md:hidden w-5 h-5 text-gray-400" />
       </div>
 
       {/* chat */}
@@ -76,7 +77,7 @@ useEffect(()=>{
     }`}>{msg.text}</p>
         )}
     <div className='text-center text-xs'>
-      <img src={msg.senderId===authUser._id ? authUser?.profilePic || assets.avatar_icon : selectedUser?.profilePic || assets.avatar_icon} alt="" className='w-7 rounded-full'/>
+      {msg.senderId===authUser._id ? (authUser?.profilePic ? <img src={authUser.profilePic} alt="" className='w-7 rounded-full'/> : <FaUserCircle className="w-7 h-7 text-gray-400" />) : (selectedUser?.profilePic ? <img src={selectedUser.profilePic} alt="" className='w-7 rounded-full'/> : <FaUserCircle className="w-7 h-7 text-gray-400" />)}
       <p className='text-gray-500'>{formatMessageTime(msg.createdAt)}</p>
 
     </div>
@@ -87,7 +88,7 @@ useEffect(()=>{
     
 
     {/* // bottom typing area */}
-    <div className='absolte bottom-0 left-0 right-0 flex items-center gap-3 p-3'>
+    <div className='absolute bottom-0 left-0 right-0 flex items-center gap-3 p-3'>
       <div className='flex-1 flex items-center bg-gray-100/12 px-3 rounded-full'>
         <input onChange={(e)=>{
           setInput(e.target.value);

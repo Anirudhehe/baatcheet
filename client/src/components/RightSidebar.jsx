@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import assets, { imagesDummyData } from '../assets/assets'
 import { ChatContext } from '../../context/ChatContext'
 import { AuthContext } from '../../context/AuthContext';
+import { FaUserCircle } from 'react-icons/fa';
 
 const RightSidebar = () => {
   const {selectedUser,messages} = useContext(ChatContext);
@@ -19,7 +20,7 @@ const RightSidebar = () => {
     <div className={`bg-[#8185b2]/10 text-white w-full relative overflow-y-scroll ${selectedUser ? "max-md:hidden" : ""}`}>
 
       <div className='flex flex-col items-center gap-2 text-xs font-light mx-auto pt-16'>
-        <img src={selectedUser.profilePic || assets.avatar_icon} alt="" className='rounded-full w-20 asoect-[1/1]' />
+        {selectedUser.profilePic ? <img src={selectedUser.profilePic} alt="" className='rounded-full w-20 asoect-[1/1]' /> : <FaUserCircle className="rounded-full w-20 h-20 text-gray-400" />}
         <h1 className='px-10 text-xl font-medium mx-auto flex items-center gap-2'>
           {onlineUsers.includes(selectedUser._id) && <p className='w-2 h-2 rounded-full bg-green-500'></p>}
           {selectedUser.fullName}
@@ -39,7 +40,7 @@ const RightSidebar = () => {
 
       </div>
       <button onClick={()=>logout()} 
-      className='absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none text-sm font-light py-2 px-20 rounded-full cursor-pointer'>Logout</button>
+      className='absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none text-sm font-light py-2 rounded-full cursor-pointer w-[90%] max-w-sm'>Logout</button>
     </div>
   )
 }

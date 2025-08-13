@@ -1,5 +1,6 @@
 import React ,{useContext, useState}from 'react'
 import assets from '../assets/assets'
+import { FaArrowLeft } from 'react-icons/fa'
 import { AuthContext } from '../../context/AuthContext'
 
 const LoginPage = () => {
@@ -34,7 +35,7 @@ const LoginPage = () => {
       
       {currState}
 
-      {subm && (<img onClick={()=>setSubm(false)} src={assets.arrow_icon} alt="" className='w-5 cursor-pointer' />)}
+      {subm && (<FaArrowLeft onClick={()=>setSubm(false)} className="w-5 h-5 cursor-pointer text-gray-400" />)}
       
       </h2>
       {currState==='Sign up' && !subm && (<input type="text" onChange={(e)=> setFullName(e.target.value)} value={fullName} className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 ' placeholder='Full Name' required/>)}
